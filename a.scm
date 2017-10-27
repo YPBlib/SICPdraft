@@ -1,3 +1,8 @@
 #lang scheme
-(define one 1
+;expression
+(define (square x)( * x x))
+(define (sum-of-squares x y) 
+(+ (square x) (square y) )
 )
+
+
