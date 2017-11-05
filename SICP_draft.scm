@@ -46,27 +46,40 @@
 	(not (> x y) )
 )
 
-
-
-(define
-	(test x y )
-	(if (= x 0) 0 y)
+(define (average x y)
+	(/ (+ x y) 2)
 )
 
-(define (sqrt x)
+;square root by Newton's root
+(define (improve guess x)
+	(average guess (/ x guess))
+)
 
-	(define (good-enough? guess x)
-		(< (abs (- (square guess) x)) 0.001)
-	)
+(define (goodEnough guess x)
+	(< (abs (- (square guess) x)) 0.001)
+)
 
-	(define (improve guess x) 
-		(average guess (/ x guess))
-	)
-
-	(define (sqrt-iter guess x)
-		(if (good-enough? guess x)
+(define (sqrtIter guess x)
+	(if (goodEnough guess x)
 		guess
-		(sqrt-iter (improve guess x) x))
-	)
-	(sqrt-iter 1.0 x)
+		(sqrtIter(improve guess x) x)
+	) 
 )
+
+(define (linearFactorial n)
+	(define (linearFactorialIter pro current)
+		(if (> current n)
+			pro
+			(linearFactorialIter 
+				(* pro current )
+				(+ current 1)
+			)
+		)
+	)
+	(linearFactorialIter 1 1 )
+)
+
+;recursive procedure: syntactic fact that the procedure definition refers to the procedure itself
+;recursive process: how the process evolves
+
+
