@@ -82,4 +82,87 @@
 ;recursive procedure: syntactic fact that the procedure definition refers to the procedure itself
 ;recursive process: how the process evolves
 
+;tree recursion
+(define (count-change amount) (cc amount 5))
+
+(define (cc amount kinds-of-coins)
+	(cond 
+		((= amount 0) 1) 
+		((or (< amount 0) (= kinds-of-coins 0)) 0) 
+		(else 
+			(+ 
+				(cc amount (- kinds-of-coins 1)) 
+				(cc (- amount (first-denomination kinds-of-coins)) kinds-of-coins)
+			)
+		)
+	)
+)
+
+(define (first-denomination kinds-of-coins) 
+	(cond 
+		((= kinds-of-coins 1) 1) 
+		((= kinds-of-coins 2) 5) 
+		((= kinds-of-coins 3) 10) 
+		((= kinds-of-coins 4) 25) 
+		((= kinds-of-coins 5) 50)
+	)
+) 
+
+;ex1.11
+;f(n) = n ;if n < 3, 
+;f(n) = f(n−1)+2f(n−2)+3f(n−3) ;if n ≥ 3. 
+(define (fex111recur n)
+	(cond 
+		((< n 3) n )
+		(else 
+			(+
+				(fex111recur (- n 1))
+				(* 2 (fex111recur (- n 2)))
+				(* 3 (fex111recur (- n 3))) 
+			
+			)
+		)
+	)
+
+)
+
+(define (fex111iter n)
+	(cond
+		((< n 3) n )
+		(else
+			(fex111iter1 0 1 2 (- n 2))
+		)
+	)
+	(define (fex111iter1 a b c count)
+		(cond
+			((= count 0) c)
+			(else 
+				(fex111iter1 b c (+ c (* 2 b)(* 3 a)) (- count 1) )
+			)
+		)	
+	)
+)
+
+;pi/4 = 1-1/3+1/5-1/7+...
+;higher-order procedures
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
