@@ -4,8 +4,9 @@
 ;applicative order: ﬁrst evaluates the operator and operands and then apply
 ;normal order: fully expand and then reduce
 
-(define (p) (p) )
+;(define (p) (p) )
 ;ConditionalExpressionsandPredicates
+(define (square x) (* x x))
 (define (abs1 x)
 	(cond 
 		((> x 0) x)
@@ -127,12 +128,6 @@
 )
 
 (define (fex111iter n)
-	(cond
-		((< n 3) n )
-		(else
-			(fex111iter1 0 1 2 (- n 2))
-		)
-	)
 	(define (fex111iter1 a b c count)
 		(cond
 			((= count 0) c)
@@ -141,18 +136,65 @@
 			)
 		)	
 	)
+	(cond
+		((< n 3) n )
+		(else
+			(fex111iter1 0 1 2 (- n 2))
+		)
+	)
 )
 
 ;pi/4 = 1-1/3+1/5-1/7+...
 ;higher-order procedures
+;(display (random 100))
+;(display (milliseconds))
 
+(define (sum-recur term a next b)
+	(if (> a b) 0
+	(+ (term a)
+		(sum-recur term (next a) next b) 
+	))
+)
 
+(define (succ n) (+ n 1))
+(define (prec n) (- n 1))
+(define (identity x) x)
+(define (const a b) a )
 
+(define (integral f a b dx)
+	(define (add-dx x) (+ x dx))
+	(* dx
+	(sum f (+ a (/ dx 2.0)) add-dx b))
+)
 
+;ex1.30
+(define (sum-iter term a next b)
+	(define (iter a result)
+		(if (> a b)
+			result
+			(iter (next a) (+ result  a))
+		)
+	)
+	(iter a a)
+)
 
+;ex1.32.b
+(define (accumulate combiner null-value term a next b)
+	(define (iter a result)
+		(if (> a b)
+			result
+			(iter (next a) (combiner result a))
+		)
+	)
+	(iter a a)
+)
 
+;lambda
+(define plus4 
+	(lambda (x) (+ x 4))
+)
 
-
+;let
 
 
 
