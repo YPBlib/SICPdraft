@@ -195,7 +195,16 @@
 )
 
 ;let
-
+(define (cubexy x y)
+	(let
+	(
+		(a (* x x x))
+		(b (* 3 x x y))
+		(c (* 3 x y y))
+		(d (* y y y))
+	)
+	(+ a b c d))
+)
 
 
 
