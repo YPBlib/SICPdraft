@@ -207,11 +207,42 @@
 )
 
 
+(define (linera-combination a b x y )
+	(add (mul a x) (mul b y) )
+)
 
+(define (addRational x y)
+	(makeRational 	(+ (* (numer x) (denom y) ) (* (numer y) (denom x) ) )
+	 				(* (denom x) (denom y) ) 
+	)
+)
 
+(define (subRational x y)
+	(makeRational 	(- (* (numer x) (denom y) ) (* (numer y) (denom x) ) )
+	 				(* (denom x) (denom y) ) 
+	)
+)
 
+(define (mulRational x y)
+	(makeRational (* (numer x)(numer y))
+				  (* (denom x)(denom y))
+	)
+)
 
+(define (divRational x y)
+	(makeRational (* (numer x)(denom y))
+				  (* (denom x)(numer y))
+	)
+)
 
+(define (equalRational x y)
+	(= 	(*(numer x)(denom y))
+		(*(denom x)(numer y))
+	)
+)
+
+;pairs
+(define x (cons 1 2))
 
 
 
