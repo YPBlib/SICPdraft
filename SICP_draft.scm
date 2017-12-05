@@ -222,7 +222,11 @@
 	 				(* (denom x) (denom y) ) 
 	)
 )
+;Chapter 2
 
+(define makeRational cons)
+(define numer car)
+(define denom cdr)
 (define (mulRational x y)
 	(makeRational (* (numer x)(numer y))
 				  (* (denom x)(denom y))
@@ -244,7 +248,12 @@
 ;pairs
 (define x (cons 1 2))
 
-
+(define (printRational x)
+	(newline)
+	(dispaly (numer x)) 
+	(display "/")
+	(display (denom x))
+)
 
 
 
