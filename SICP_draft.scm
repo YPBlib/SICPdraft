@@ -224,7 +224,11 @@
 )
 ;Chapter 2
 
-(define makeRational cons)
+(define (makeRational x y) 
+	(let ((g (gcd x y)))
+	(cons (/ x g)(/ y g))
+	)
+)
 (define numer car)
 (define denom cdr)
 (define (mulRational x y)
@@ -254,6 +258,9 @@
 	(display "/")
 	(display (denom x))
 )
+
+
+
 
 
 
